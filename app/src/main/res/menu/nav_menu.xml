@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_society"
+            android:title="Social News" />
+        <item
+            android:id="@+id/nav_county"
+            android:title="Local News" />
+        <item
+            android:id="@+id/nav_internation"
+            android:title="Global News" />
+        <item
+            android:id="@+id/nav_fun"
+            android:title="Entertainment" />
+        <item
+            android:id="@+id/nav_sport"
+            android:title="Sport News" />
+        <item
+            android:id="@+id/nav_nba"
+            android:title="NBA News" />
+        <item
+            android:id="@+id/nav_football"
+            android:title="Soccer News" />
+        <item
+            android:id="@+id/nav_technology"
+            android:title="Technology News" />
+        <item
+            android:id="@+id/nav_work"
+            android:title="Business News" />
+        <item
+            android:id="@+id/nav_apple"
+            android:title="Apple News" />
+        <item
+            android:id="@+id/nav_war"
+            android:title="Military News" />
+        <item
+            android:id="@+id/nav_internet"
+            android:title="Mobile Internet" />
+        <item
+            android:id="@+id/nav_travel"
+            android:title="Travel" />
+        <item
+            android:id="@+id/nav_health"
+            android:title="Health" />
+        <item
+            android:id="@+id/nav_strange"
+            android:title="Anecdote" />
+        <item
+            android:id="@+id/nav_vr"
+            android:title="VR Technology" />
+        <item
+            android:id="@+id/nav_it"
+            android:title="IT News" />
+    </group>
+
+
+
+</menu>
