@@ -31,7 +31,7 @@ public class LoginAndRegistActivity extends AppCompatActivity implements View.On
 
     private void init() {
         //Bmob Initialization
-        Bmob.initialize(this, "6ebabddc620be96e04c6c361796d861f");
+        Bmob.initialize(this, "988ae71f79851ac817431bee093c1279");
         name_edit = findViewById(R.id.name_edit);
         password_edit = findViewById(R.id.password_edit);
         login_btn = findViewById(R.id.login_btn);
