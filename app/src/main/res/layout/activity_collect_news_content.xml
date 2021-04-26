@@ -17,6 +17,7 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/tool_bar"
+                android:background="#8FBC8F"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_scrollFlags="enterAlways|snap|scroll"
