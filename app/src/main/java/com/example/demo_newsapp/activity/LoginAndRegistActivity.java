@@ -49,7 +49,9 @@ public class LoginAndRegistActivity extends AppCompatActivity implements View.On
                 loginUser(name_edit.getText().toString(), password_edit.getText().toString());
                 break;
             case R.id.regist_btn:
-                registUser(name_edit.getText().toString(), password_edit.getText().toString());
+                Intent intent = new Intent(LoginAndRegistActivity.this, SignUpActivity.class );
+                startActivity(intent);
+                finish();
                 break;
         }
     }
@@ -78,7 +80,7 @@ public class LoginAndRegistActivity extends AppCompatActivity implements View.On
 
     }
 
-    private void registUser(String nameEdit, String passwordEdit) {
+/*    private void registUser(String nameEdit, String passwordEdit) {
         BmobUser user = new BmobUser();
         user.setUsername(nameEdit);
         user.setPassword(passwordEdit);
@@ -94,17 +96,17 @@ public class LoginAndRegistActivity extends AppCompatActivity implements View.On
                 }
             }
         });
-    }
+    }*/
 
 
-//    private void registUser(String nameEdit, String passwordEdit){
-//        regist_btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(LoginAndRegistActivity.this, SignUpActivity.class );
-//                startActivity(intent);
-//            }
-//        });
-//    }
+/*    private void registUser(){
+        regist_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginAndRegistActivity.this, SignUpActivity.class );
+                startActivity(intent);
+            }
+        });
+    }*/
 
 }
