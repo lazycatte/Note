@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,47 +46,78 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.signup_btn:
-                signupUser(name_signup.getText().toString(), password_signup.getText().toString());
-                break;
+//            Jump to login page
             case R.id.toLogin_btn:
-                toLoginUser(name_signup.getText().toString(), password_signup.getText().toString());
+                Intent intent_to_in = new Intent(this, LoginAndRegistActivity.class);
+                startActivity(intent_to_in);
+                finish();
+                break;
+//                verify the information typed in before sign up
+            case R.id.signup_btn:
+                String username_up = name_signup.getText().toString().trim();
+                String password_1 = password_signup.getText().toString().trim();
+                String password_2 = password_signup_con.getText().toString().trim();
+//                check if form has empty value
+                if (!TextUtils .isEmpty(username_up) && !TextUtils.isEmpty(password_1) && !TextUtils.isEmpty(password_2)){
+                    if (!TextUtils.equals(password_1,password_2)){
+                        BmobUser user = new BmobUser();
+                        user.setUsername(username_up);
+                        user.setPassword(password_2);
+                        user.signUp(new SaveListener<BmobUser>() {
+                            @Override
+                            public void done(BmobUser bmobUser, BmobException e) {
+                                if(e==null){
+                                    Toast.makeText(SignUpActivity.this,"Sign up successfully",Toast.LENGTH_SHORT).show();
+                                    Intent intent_to_main = new Intent();
+                                    intent_to_main.setClass(SignUpActivity.this,MainActivity.class);
+                                    startActivity(intent_to_main);
+                                    finish();
+                                }else{
+                                    Toast.makeText(SignUpActivity.this,"Sign up failed"+e.getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }else{
+                        Toast.makeText(this,"Please fill all the forms.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
         }
     }
 
-    private void signupUser(String nameSignUp, String passwordSignUp){
-        BmobUser user = new BmobUser();
-        user.setUsername(nameSignUp);
-        user.setPassword(passwordSignUp);
-        user.signUp(new SaveListener<BmobUser>() {
-
-            @Override
-            public void done(BmobUser bmobUser, BmobException e) {
-                if(e==null){
-                    Toast.makeText(SignUpActivity.this,bmobUser.getUsername()+"Sign up successfully",Toast.LENGTH_SHORT).show();
-
-                }else {
-                    Toast.makeText(SignUpActivity.this, "Sign up failed：" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    private void toLoginUser(String nameSignUp, String passwordSignUp){
-        BmobUser user = new BmobUser();
-        user.setUsername(nameSignUp);
-        user.setPassword(passwordSignUp);
-        user.signUp(new SaveListener<BmobUser>() {
-
-            @Override
-            public void done(BmobUser bmobUser, BmobException e) {
-                if(e==null){
-                    Toast.makeText(SignUpActivity.this,bmobUser.getUsername()+"Sign up successfully",Toast.LENGTH_SHORT).show();
-
-                }else {
-                    Toast.makeText(SignUpActivity.this, "Sign up failed：" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
+//    private void signupUser(String nameSignUp, String passwordSignUp){
+//        BmobUser user = new BmobUser();
+//        user.setUsername(nameSignUp);
+//        user.setPassword(passwordSignUp);
+//        user.signUp(new SaveListener<BmobUser>() {
+//
+//            @Override
+//            public void done(BmobUser bmobUser, BmobException e) {
+//                if(e==null){
+//                    Toast.makeText(SignUpActivity.this,bmobUser.getUsername()+"Sign up successfully",Toast.LENGTH_SHORT).show();
+//
+//                }else {
+//                    Toast.makeText(SignUpActivity.this, "Sign up failed：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//    }
+//
+//    private void toLoginUser(String nameSignUp, String passwordSignUp){
+//        BmobUser user = new BmobUser();
+//        user.setUsername(nameSignUp);
+//        user.setPassword(passwordSignUp);
+//        user.signUp(new SaveListener<BmobUser>() {
+//
+//            @Override
+//            public void done(BmobUser bmobUser, BmobException e) {
+//                if(e==null){
+//                    Toast.makeText(SignUpActivity.this,bmobUser.getUsername()+"Sign up successfully",Toast.LENGTH_SHORT).show();
+//
+//                }else {
+//                    Toast.makeText(SignUpActivity.this, "Sign up failed：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//    }
 }
