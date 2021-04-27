@@ -94,4 +94,15 @@ public class LoginAndRegistActivity extends AppCompatActivity implements View.On
         });
     }
 
+
+//    private void registUser(String nameEdit, String passwordEdit){
+//        regist_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(LoginAndRegistActivity.this, SignUpActivity.class );
+//                startActivity(intent);
+//            }
+//        });
+//    }
+
 }
