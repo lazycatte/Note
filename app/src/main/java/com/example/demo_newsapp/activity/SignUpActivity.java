@@ -58,8 +58,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 String password_1 = password_signup.getText().toString().trim();
                 String password_2 = password_signup_con.getText().toString().trim();
 //                check if form has empty value
-                if (!TextUtils .isEmpty(username_up) && !TextUtils.isEmpty(password_1) && !TextUtils.isEmpty(password_2)){
-                    if (TextUtils.equals(password_1,password_2)){
+                if (!username_up.isEmpty() && !password_1.isEmpty()&& !password_2.isEmpty()){
+                    if (password_1.equals(password_2)){
                         BmobUser user = new BmobUser();
                         user.setUsername(username_up);
                         user.setPassword(password_2);
