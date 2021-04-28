@@ -77,7 +77,6 @@ public class LoginAndRegistActivity extends AppCompatActivity implements View.On
                 }
             }
         });
-
     }
 
 /*    private void registUser(String nameEdit, String passwordEdit) {
