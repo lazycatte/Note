@@ -78,8 +78,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             }
                         });
                     }else{
-                        Toast.makeText(this,"Please fill all the forms.",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this,"password you confirmed is not the same.",Toast.LENGTH_SHORT).show();
                     }
+                }else{
+                    Toast.makeText(this,"Please fill in all forms.",Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
