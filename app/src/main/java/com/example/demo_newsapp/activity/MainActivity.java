@@ -166,7 +166,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {    //
                 Toast.makeText(MainActivity.this, "Clicked the note button", Toast.LENGTH_SHORT).show();
-                System.exit(0);//Add new notes
+                intent.putExtra("user_objectId", user_objectId);
+                startActivity(intent);
             }
         });
 
