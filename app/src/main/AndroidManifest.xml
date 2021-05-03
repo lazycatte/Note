@@ -23,6 +23,8 @@
         <activity android:name=".activity.UpdateUserPasswordActivity"></activity>
         <activity android:name=".activity.UserInfosActivity" />
         <activity android:name=".activity.CollectNewsContentActivity" />
+        <activity android:name=".activity.AddOrEditNoteActivity" />
+        <activity android:name=".activity.NoteInformationActivity" />
         <activity android:name=".activity.MyCollectnewsActivity" />
         <activity android:name=".activity.LoginAndRegistActivity">
             <intent-filter>

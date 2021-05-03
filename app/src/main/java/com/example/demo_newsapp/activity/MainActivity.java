@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageView_btn_edit = headView.findViewById(R.id.btn_edit);
         ImageView imageView_btn_about = headView.findViewById(R.id.btn_aboutme);
         ImageView imageView_btn_exit_app = headView.findViewById(R.id.btn_exit_app);
+        ImageView imageView_btn_note = headView.findViewById(R.id.btn_note_app);
 
         textViewObjectId.setText("id:" + user_objectId);
         textViewLoginSuccess.setText("Status:" + loginSuccess);
@@ -157,6 +158,15 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("user_objectId",user_objectId);
                 startActivity(intent);
 
+            }
+        });
+
+        imageView_btn_note.setOnClickListener(new View.OnClickListener() {
+            Intent intent = new Intent(MainActivity.this, AddOrEditNoteActivity.class);
+            @Override
+            public void onClick(View view) {    //
+                Toast.makeText(MainActivity.this, "Clicked the note button", Toast.LENGTH_SHORT).show();
+                System.exit(0);//Add new notes
             }
         });
 

@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.demo_newsapp.R;
+
 import java.util.Map;
 
 import data.dbHelper;
