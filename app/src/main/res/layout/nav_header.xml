@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="image_btn_ic_notes"
-            android:src="@drawable/ic_note" />
+            android:src="@drawable/ic_notes" />
 
         <ImageView
             android:layout_margin="5sp"
