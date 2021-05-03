@@ -79,6 +79,7 @@ public class AddOrEditNoteActivity extends Activity {
 
         mImgAdd.setVisibility(View.GONE);
 
+
         mImgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
