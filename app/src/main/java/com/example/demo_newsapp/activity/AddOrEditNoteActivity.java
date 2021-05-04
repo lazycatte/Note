@@ -121,9 +121,9 @@ public class AddOrEditNoteActivity extends Activity {
         }
 
         // TODO Auto-generated method stub
-        Intent intent = getIntent();
+//        Intent intent = getIntent();
         Note note = new Note();
-        note.setUserName(intent.getStringExtra("username"));
+        note.setUserName(username);
         note.setTitle(bno);
         note.setContent(bname);
         note.save(new SaveListener<String>() {
@@ -154,9 +154,9 @@ public class AddOrEditNoteActivity extends Activity {
             }
 
             // TODO Auto-generated method stub
-            Intent intent = getIntent();
+//            Intent intent = getIntent();
             Note note = new Note();
-            note.setUserName(intent.getStringExtra("user_objectId"));
+            note.setUserName(user_objectId);
             note.setTitle(bno);
             note.setContent(bname);
             note.save(new SaveListener<String>() {
