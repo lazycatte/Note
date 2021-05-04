@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         imageView_btn_note.setOnClickListener(new View.OnClickListener() {
-            Intent intent = new Intent(MainActivity.this, AddOrEditNoteActivity.class);
+            Intent intent = new Intent(MainActivity.this, NoteInformationActivity.class);
             @Override
             public void onClick(View view) {    //
                 Toast.makeText(MainActivity.this, "Clicked the note button", Toast.LENGTH_SHORT).show();
