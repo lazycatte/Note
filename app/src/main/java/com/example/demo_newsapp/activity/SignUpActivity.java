@@ -67,6 +67,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                 if(e==null){
                                     Toast.makeText(SignUpActivity.this,"Sign up successfully",Toast.LENGTH_SHORT).show();
                                     Intent intent_to_main = new Intent();
+                                    intent_to_main.putExtra("user_objectId",bmobUser.getObjectId());
+                                    intent_to_main.putExtra("username",bmobUser.getUsername());
+                                    intent_to_main.putExtra("loginSuccess","Login successfully");
                                     intent_to_main.setClass(SignUpActivity.this,MainActivity.class);
                                     startActivity(intent_to_main);
                                     finish();
