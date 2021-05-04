@@ -149,7 +149,6 @@ public class ContentActivity extends AppCompatActivity {
         //Insert data to Title form
         Title temptitle = new Title(title, descr, imageUrl, uri, user_objectId,href);
         insertInfoToTableTitle(temptitle);
-
     }
 
 
@@ -165,7 +164,6 @@ public class ContentActivity extends AppCompatActivity {
                     System.out.println(e.getMessage() + "----------------log");
                     Toast.makeText(ContentActivity.this, "Insert failed", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }
