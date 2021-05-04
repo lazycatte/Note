@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageView_btn_exit_app = headView.findViewById(R.id.btn_exit_app);
         ImageView imageView_btn_note = headView.findViewById(R.id.btn_note_app);
 
-        textViewObjectId.setText("id:" + user_objectId);
+        textViewObjectId.setText("name:" + username);
         textViewLoginSuccess.setText("Status:" + loginSuccess);
 
         imageView_btn_edit.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {    //
                 Toast.makeText(MainActivity.this, "Clicked the change password button", Toast.LENGTH_SHORT).show();
                 intent.putExtra("user_objectId1",user_objectId);
-
                 startActivity(intent);
             }
         });
