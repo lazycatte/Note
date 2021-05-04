@@ -37,10 +37,18 @@ public class AddOrEditNoteActivity extends Activity {
     private String selId;
     private Map<String, Object> listItem;
 
+//    声明 username 和 user_objectId
+    private String user_objectId;
+    private String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_or_edit_book);
+
+        Intent intent = getIntent();
+        user_objectId = intent.getStringExtra("user_objectId");
+        username = intent.getStringExtra("username");
 
         if (getIntent() != null) {
             listItem = (Map<String, Object>) getIntent().getSerializableExtra("listItem");
