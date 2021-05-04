@@ -67,7 +67,7 @@ public class NoteInformationActivity extends Activity {
         mImgBack = findViewById(R.id.imageView4);
         mTvTitle = findViewById(R.id.tv);
 
-        mTvTitle.setText("BelongToU");
+        mTvTitle.setText("Notes");
 
         mImgBack.setVisibility(View.GONE);
 
