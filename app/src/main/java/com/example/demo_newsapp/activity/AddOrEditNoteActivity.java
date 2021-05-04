@@ -124,6 +124,9 @@ public class AddOrEditNoteActivity extends Activity {
             Toast.makeText(this, "Fail to add!", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(this, "Successfully added!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(AddOrEditNoteActivity.this, NoteInformationActivity.class);
+            startActivity(intent);
+            finish();
     }
 
 
