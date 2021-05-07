@@ -48,7 +48,7 @@ public class ContentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_content);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
@@ -70,13 +70,12 @@ public class ContentActivity extends AppCompatActivity {
             @SuppressLint("LongLogTag")
             @Override
             public void done(BmobQueryResult<BmobUser> bmobQueryResult, BmobException e) {
-                if (e == null) {
+                // TODO: 2021/5/6 fix the crash problem when clicking
+                if (e == null && bmobQueryResult.getResults() != null && bmobQueryResult.getResults().size() > 0) {
                     BmobUser bmobUser = bmobQueryResult.getResults().get(0);
                     user_objectId = bmobUser.getObjectId();
                     username = bmobUser.getUsername();
-
-
-                } else {
+                } else if (e != null) {
                     Log.i("CollectNewsContentActivity", "done: Search Error" + e.getMessage());
                 }
             }
@@ -91,7 +90,7 @@ public class ContentActivity extends AppCompatActivity {
         href = getIntent().getStringExtra("href");
         actionBar_title = getIntent().getStringExtra("actionBar_title");
 
-        System.out.println(user_objectId + ":" + objectId + ":" + ":" + descr + ":" + title + ":" + imageUrl + ":" + uri +":"+ href+":" + actionBar_title + "------------log");
+        System.out.println(user_objectId + ":" + objectId + ":" + ":" + descr + ":" + title + ":" + imageUrl + ":" + uri + ":" + href + ":" + actionBar_title + "------------log");
 
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.show();
@@ -147,8 +146,9 @@ public class ContentActivity extends AppCompatActivity {
         //Bmob Initialization
         Bmob.initialize(this, "988ae71f79851ac817431bee093c1279");
         //Insert data to Title form
-        Title temptitle = new Title(title, descr, imageUrl, uri, user_objectId,href);
+        Title temptitle = new Title(title, descr, imageUrl, uri, user_objectId, href);
         insertInfoToTableTitle(temptitle);
+
     }
 
 
@@ -164,6 +164,7 @@ public class ContentActivity extends AppCompatActivity {
                     System.out.println(e.getMessage() + "----------------log");
                     Toast.makeText(ContentActivity.this, "Insert failed", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
     }

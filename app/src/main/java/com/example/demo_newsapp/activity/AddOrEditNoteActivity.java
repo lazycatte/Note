@@ -1,11 +1,13 @@
 package com.example.demo_newsapp.activity;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,8 +17,7 @@ import android.widget.Toast;
 import com.example.demo_newsapp.R;
 
 import java.util.Map;
-import cn.bmob.v3.exception.BmobException;
-import cn.bmob.v3.listener.SaveListener;
+
 import data.dbHelper;
 
 public class AddOrEditNoteActivity extends Activity {
@@ -37,18 +38,11 @@ public class AddOrEditNoteActivity extends Activity {
     private String selId;
     private Map<String, Object> listItem;
 
-//    声明 username 和 user_objectId
-    private String user_objectId;
-    private String username;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_add_or_edit_book);
-
-        Intent intent = getIntent();
-        user_objectId = intent.getStringExtra("user_objectId");
-        username = intent.getStringExtra("username");
 
         if (getIntent() != null) {
             listItem = (Map<String, Object>) getIntent().getSerializableExtra("listItem");
@@ -98,11 +92,12 @@ public class AddOrEditNoteActivity extends Activity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listItem == null) {
+                if (listItem == null){
                     dbAdd();
-                } else {
+                }else {
                     dbUpdate();
                 }
+
             }
         });
     }
@@ -121,54 +116,47 @@ public class AddOrEditNoteActivity extends Activity {
         }
 
         // TODO Auto-generated method stub
-//        Intent intent = getIntent();
-        Note note = new Note();
-        note.setUserName(username);
-        note.setTitle(bno);
-        note.setContent(bname);
-        note.save(new SaveListener<String>() {
-            @Override
-            public void done(String s, BmobException e) {
-                if (e == null) {
-                    Intent intent = new Intent(AddOrEditNoteActivity.this, NoteInformationActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                }
-            }
-        });
+        ContentValues values = new ContentValues();
+        values.put("bno", bno);
+        values.put("bname", bname);
+        values.put("bar", bar);
+        values.put("bpr", bpr);
+        long rowid = db.insert(dbHelper.TB_NAME, null, values);
+        if (rowid == -1)
+            Toast.makeText(this, "Fail to add!", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this, "Successfully added!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(AddOrEditNoteActivity.this, NoteInformationActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 
+    protected void dbUpdate() {
 
-        protected void dbUpdate(){
+        String bno = et_no.getText().toString().trim();
+        String bname = et_name.getText().toString().trim();
+        String bar = et_ar.getText().toString().trim();
+        String bpr = et_pr.getText().toString().trim();
 
-            String bno = et_no.getText().toString().trim();
-            String bname = et_name.getText().toString().trim();
-            String bar = et_ar.getText().toString().trim();
-            String bpr = et_pr.getText().toString().trim();
+        if (TextUtils.isEmpty(bno) || TextUtils.isEmpty(bname) || TextUtils.isEmpty(bar) || TextUtils.isEmpty(bpr)) {
+            Toast.makeText(this, "Please complete!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            if (TextUtils.isEmpty(bno) || TextUtils.isEmpty(bname) || TextUtils.isEmpty(bar) || TextUtils.isEmpty(bpr)) {
-                Toast.makeText(this, "Please complete!", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // TODO Auto-generated method stub
-//            Intent intent = getIntent();
-            Note note = new Note();
-            note.setUserName(user_objectId);
-            note.setTitle(bno);
-            note.setContent(bname);
-            note.save(new SaveListener<String>() {
-                @Override
-                public void done(String s, BmobException e) {
-                    if (e == null) {
-                        Intent intent = new Intent(AddOrEditNoteActivity.this, NoteInformationActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                    }
-                }
-            });
+        // TODO Auto-generated method stub
+        ContentValues values = new ContentValues();
+        values.put("bno", bno);
+        values.put("bname", bname);
+        values.put("bar", bar);
+        values.put("bpr", bpr);
+        String where = "_id=" + selId;
+        int i = db.update(dbHelper.TB_NAME, values, where, null);
+        if (i > 0) {
+            Toast.makeText(this, "Update succeeded!", Toast.LENGTH_SHORT).show();
+            finish();
+        } else {
+            Toast.makeText(this, "Update failed!", Toast.LENGTH_SHORT).show();
         }
     }
+}
